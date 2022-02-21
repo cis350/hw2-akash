@@ -1,0 +1,62 @@
+[
+    {
+      "id": 0,
+      "answer": "Asap Rocky",
+      "choices": ["Asap Rocky", "Asap Ferg", "Playboi Carti", "Lil Uzi Vert"],
+      "image": "https://i.ibb.co/FDqMBkc/asap-Rocky.jpg"
+    },
+    {
+      "id": 1,
+      "answer": "Drake",
+      "choices": ["Drake", "Rihanna", "Weeknd", "Ariana Grande"],
+      "image": "https://i.ibb.co/VmwJvfx/drake.jpg"
+    },
+    {
+      "id": 2,
+      "answer": "Joe Burrow",
+      "choices": ["Joe Burrow", "Drew Brees", "Andy Dalton", "Tom Brady"],
+      "image": "https://i.ibb.co/HYBwGkm/joeshiesty.jpg"
+    },
+    {
+      "id": 3,
+      "answer": "Justin Bieber",
+      "choices": ["Justin Bieber", "Khalid", "Brent Faiyaz", "Post Malone"],
+      "image": "https://i.ibb.co/hHw2VdC/justinbieber.jpg"
+    },
+    {
+      "id": 4,
+      "answer": "Ken Carson",
+      "choices": ["Ken Carson", "SoFaygo", "Yeat", "Autumn"],
+      "image": "https://i.ibb.co/VDZxwpM/kencarson.jpg"
+    },
+    {
+      "id": 5,
+      "answer": "Lil Yachty",
+      "choices": ["Lil Yachty", "Playboi Carti", "Ugly God", "Juice WRLD"],
+      "image": "https://i.ibb.co/bQwJdtd/lilyachty.jpg"
+    },
+    {
+      "id": 6,
+      "answer": "Mbappe",
+      "choices": ["Mbappe", "Messi", "Ronaldo", "Neymar"],
+      "image": "https://i.ibb.co/Q9pZh8d/mbappe.jpg"
+    },
+    {
+      "id": 7,
+      "answer": "Shai",
+      "choices": ["Shai", "Lebron James", "Stephen Curry", "Joel Embiid"],
+      "image": "https://i.ibb.co/yYnxYXS/shai.jpg"
+    },
+    {
+      "id": 8,
+      "answer": "Tim Tebow",
+      "choices": ["Tim Tebow", "Aaron Rodgers", "Matthew Stafford", "Peyton Manning"],
+      "image": "https://i.ibb.co/zQ99Qpz/tim-tebow-foundation-Xo2-Ouz-T5-Wt-Q-unsplash.jpg"
+    },
+    {
+      "id": 9,
+      "answer": "Travis Scott",
+      "choices": ["Travis Scott", "Future", "Chief Keef", "Kanye West"],
+      "image": "https://i.ibb.co/4NdhFnp/travisscott.jpg"
+    }
+  ]
