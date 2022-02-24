@@ -8,18 +8,34 @@ function Question({ userName, bestScore }) {
   const [id, setId] = useState(Math.floor(Math.random() * 10));
   const [question, setQuestion] = useState(questions[id]);
   const [used, setUsed] = useState([id]);
-  const [correct, setCorrect] = useState(null);
   const [answered, setAnswered] = useState(false);
   const [currScore, setCurrScore] = useState(0);
   const [newBestScore, setNewBestScore] = useState(0);
+  const [buttonColor1, setButtonColor1] = useState('bg-slate-300');
+  const [buttonColor2, setButtonColor2] = useState('bg-slate-300');
+  const [buttonColor3, setButtonColor3] = useState('bg-slate-300');
+  const [buttonColor4, setButtonColor4] = useState('bg-slate-300');
+  const [overallBestScore, setoverallBestScore] = useState(0);
+
+  useEffect(() => {
+    const keys = Object.keys(localStorage);
+    let i = 0;
+    const res = [];
+    while (i < keys.length) {
+      res.push(localStorage.getItem(keys[i]));
+      i += 1;
+    }
+    const leader = Math.max(...res);
+    if (leader !== null) {
+      setoverallBestScore(leader);
+    }
+  }, []);
+
   function correctChoice(e) {
     if (!answered) {
       if (e.currentTarget.dataset.id === question.answer) {
-        setCorrect(true);
         const x = currScore + 1;
         setCurrScore(x);
-      } else {
-        setCorrect(false);
       }
       setAnswered(true);
     }
@@ -38,60 +54,83 @@ function Question({ userName, bestScore }) {
     }
     setId(x);
     setQuestion(questions[x]);
-    setCorrect(null);
     setAnswered(false);
     setUsed([...used, x]);
+    setButtonColor1('bg-slate-300');
+    setButtonColor2('bg-slate-300');
+    setButtonColor3('bg-slate-300');
+    setButtonColor4('bg-slate-300');
   }
   return (
     <div>
+
       {used.length === 10 && answered ? (<EndGame />) : (
-        <div>
-          <img src={question.image} alt="" />
-          <button
-            data-id={question.choices[0]}
-            type="button"
-            style={{ border: '1px solid #d66', margin: '5px' }}
-            onClick={(e) => { correctChoice(e); }}
-          >
-            {question.choices[0]}
-          </button>
-          <button
-            data-id={question.choices[1]}
-            type="button"
-            style={{ border: '1px solid #d66', margin: '5px' }}
-            onClick={(e) => { correctChoice(e); }}
-          >
-            {question.choices[1]}
-          </button>
-          <button
-            data-id={question.choices[2]}
-            type="button"
-            style={{ border: '1px solid #d66', margin: '5px' }}
-            onClick={(e) => { correctChoice(e); }}
-          >
-            {question.choices[2]}
-          </button>
-          <button
-            data-id={question.choices[3]}
-            type="button"
-            style={{ border: '1px solid #d66', margin: '5px' }}
-            onClick={(e) => { correctChoice(e); }}
-          >
-            {question.choices[3]}
-          </button>
-          {correct && <div> Correct!</div>}
-          {correct === false && <div> Incorrect!</div>}
-          {used.length < 10 && answered && (
+        <div className="flex flex-col items-center">
+          <img src={question.image} alt="celebrity" className="w-[600px] h-[400px]" />
+          <div className="grid grid-cols-2 grid-rows-2 gap-x-72">
             <button
+              data-id={question.choices[0]}
               type="button"
-              style={{ border: '1px solid #d66', margin: '5px' }}
-              onClick={() => { reset(); }}
+              className={`rounded-full border-2 mt-10 px-36 py-4 m-auto ${buttonColor1}`}
+              onClick={(e) => {
+                correctChoice(e);
+                if (e.currentTarget.dataset.id === question.answer) {
+                  setButtonColor1('bg-green-300');
+                } else {
+                  setButtonColor1('bg-red-300');
+                }
+              }}
             >
-              Next Question
+              <p>{question.choices[0]}</p>
             </button>
-          )}
+            <button
+              data-id={question.choices[1]}
+              type="button"
+              className={`rounded-full border-2 mt-10 px-36 py-4 m-auto ${buttonColor2}`}
+              onClick={(e) => {
+                correctChoice(e);
+                if (e.currentTarget.dataset.id === question.answer) {
+                  setButtonColor2('bg-green-300');
+                } else {
+                  setButtonColor2('bg-red-300');
+                }
+              }}
+            >
+              {question.choices[1]}
+            </button>
+            <button
+              data-id={question.choices[2]}
+              type="button"
+              className={`rounded-full border-2 mt-10 px-36 py-4 m-auto ${buttonColor3}`}
+              onClick={(e) => {
+                correctChoice(e);
+                if (e.currentTarget.dataset.id === question.answer) {
+                  setButtonColor3('bg-green-300');
+                } else {
+                  setButtonColor3('bg-red-300');
+                }
+              }}
+            >
+              {question.choices[2]}
+            </button>
+            <button
+              data-id={question.choices[3]}
+              type="button"
+              className={`rounded-full border-2 mt-10 px-36 py-4 m-auto ${buttonColor4}`}
+              onClick={(e) => {
+                correctChoice(e);
+                if (e.currentTarget.dataset.id === question.answer) {
+                  setButtonColor4('bg-green-300');
+                } else {
+                  setButtonColor4('bg-red-300');
+                }
+              }}
+            >
+              {question.choices[3]}
+            </button>
+          </div>
           {used.length === 10 && answered && (
-            <EndGame />
+            <EndGame finalScore={currScore} />
           )}
           <div>
             Current Score:
@@ -99,7 +138,19 @@ function Question({ userName, bestScore }) {
             <br />
             Best Score:
             {used.length === 10 && answered ? newBestScore : bestScore}
+            <br />
+            Overall Best Score:
+            {overallBestScore}
           </div>
+          {used.length < 10 && answered && (
+            <button
+              type="button"
+              className="rounded-full border-2 mt-10 px-36 py-4 m-auto bg-blue-600"
+              onClick={() => { reset(); }}
+            >
+              Next Question
+            </button>
+          )}
         </div>
       )}
     </div>
