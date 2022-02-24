@@ -8,9 +8,6 @@ function App() {
   function initalizeUser(inputName) {
     if (localStorage.getItem(inputName) === null) {
       localStorage.setItem(inputName, 0);
-    } else {
-      const x = localStorage.getItem(inputName);
-      console.log(x);
     }
     setcurrUser(inputName);
     setBestScore(localStorage.getItem(userName));
@@ -22,22 +19,21 @@ function App() {
   function restartGame() {
     setcurrUser('');
   }
+
   return (
-    <div>
+    <div className="flex flex-col min-h-screen justify-center items-center text-center">
+      <h1 className="mb-8 text-3xl">Guess the Celebrity Quiz</h1>
       {(currUser === '') ? (
-        <div>
-          <div style={{ display: 'flex' }}>
-            <div>Username: </div>
-            <input type="text" style={{ border: '1px solid #d66' }} onChange={(e) => { setUserName(e.target.value); }} />
-          </div>
-          {!userName.match(/^[0-9a-zA-Z]+$/) && userName !== '' && <div> invalid name!</div>}
+        <div className="flex flex-col w-1/4">
+          <input placeholder="Enter Username" type="text" className="border-2 p-4 bg-slate-300" onChange={(e) => { setUserName(e.target.value); }} />
+          {!userName.match(/^[0-9a-zA-Z]+$/) && userName !== '' && <div className="bg-slate-300 mt-6 w-1/2 m-auto"> invalid name!</div>}
           <button
             type="submit"
-            style={{ border: '1px solid #d66' }}
             onClick={() => { initalizeUser(userName); }}
             disabled={!userName.match(/^[0-9a-zA-Z]+$/) && userName !== ''}
+            className="rounded-full border-2 mt-10 py-4 w-1/2 m-auto bg-slate-300"
           >
-            Submit
+            Start
           </button>
         </div>
       ) : (
@@ -45,7 +41,7 @@ function App() {
           <Question userName={currUser} bestScore={bestScore} />
           <button
             type="button"
-            style={{ border: '1px solid #d66' }}
+            className="rounded-full border-2 mt-10 px-36 py-4 m-auto bg-red-600"
             onClick={() => { deleteUser(); }}
           >
             Delete My Account
@@ -53,7 +49,7 @@ function App() {
           <br />
           <button
             type="button"
-            style={{ border: '1px solid #d66' }}
+            className="rounded-full border-2 mt-10 px-36 py-4 m-auto bg-blue-600"
             onClick={() => { restartGame(); }}
           >
             Restart Game
