@@ -130,7 +130,7 @@ function Question({ userName, bestScore }) {
             </button>
           </div>
           {used.length === 10 && answered && (
-            <EndGame finalScore={currScore} />
+            <EndGame />
           )}
           <div>
             Current Score:

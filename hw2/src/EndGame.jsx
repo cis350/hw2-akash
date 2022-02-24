@@ -2,7 +2,7 @@ import React from 'react';
 
 /* eslint react/prop-types: 0 */
 
-function EndGame({ finalScore }) {
+function EndGame() {
   const keys = Object.keys(localStorage);
   let i = 0;
   let res = [];
@@ -15,10 +15,6 @@ function EndGame({ finalScore }) {
   return (
     <div className="text-3xl">
       Leaderboard:
-      <div>
-        Final Score:
-        {finalScore}
-      </div>
       {leaders.map((x) => (
         <div>
           {x[0]}
