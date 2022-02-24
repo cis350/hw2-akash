@@ -1,0 +1,9 @@
+language: node_js
+node_js:
+  - "14"
+
+script:
+  - cd hw2 # replace 'app' with the name of the folder containing your app
+  - npm install
+  - npm run lint
+  - npm run build
