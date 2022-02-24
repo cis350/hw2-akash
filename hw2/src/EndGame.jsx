@@ -1,6 +1,8 @@
 import React from 'react';
 
-function EndGame() {
+/* eslint react/prop-types: 0 */
+
+function EndGame({ finalScore }) {
   const keys = Object.keys(localStorage);
   let i = 0;
   let res = [];
@@ -10,10 +12,13 @@ function EndGame() {
   }
   res = res.sort((a, b) => b[1] - a[1]);
   const leaders = res.slice(0, 5);
-  console.log(leaders);
   return (
-    <div>
+    <div className="text-3xl">
       Leaderboard:
+      <div>
+        Final Score:
+        {finalScore}
+      </div>
       {leaders.map((x) => (
         <div>
           {x[0]}
